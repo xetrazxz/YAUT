@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battery / Charging</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/button.css" />
+    <link rel="stylesheet" href="../fonts/css/all.min.css" />
+    <script src="../scripts/battery.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1><i class="fa fa-bolt"></i> Battery & Charging</h1>
+
+        <!-- Charge Current -->
+        <section class="panel">
+            <h2><i class="fa fa-battery-half"></i> Charge Current Limit</h2>
+            <label for="charge-slider">Limit Charge Current (A):</label>
+            <input type="range" id="charge-slider" min="0.5" max="2.4" step="0.1" value="2.0" />
+            <p>Current Limit: <span id="charge-limit-value">2.0 A</span></p>
+        </section>
+
+        <!-- Charging Toggle -->
+        <section class="panel">
+            <h2><i class="fa fa-plug"></i> Charging Control</h2>
+            <button id="charge-toggle" class="menu-btn">
+                <i class="fa fa-power-off"></i> Enable / Disable Charging
+            </button>
+            <p>Charging Status: <span id="charge-status">Unknown</span></p>
+        </section>
+
+        <!-- Battery Status -->
+        <section class="panel">
+            <h2><i class="fa fa-thermometer-half"></i> Battery Status</h2>
+            <p>Battery Temp: <span id="battery-temp">--</span> °C</p>
+            <p>Battery Health: <span id="battery-health">--</span></p>
+        </section>
+
+        <!-- Terminal -->
+        <div class="output-panel" id="output">Ready.</div>
+    </div>
+</body>
+<script src="../scripts/main.js"></script>
+<script src="../scripts/battery.js"></script>
+
+</html>

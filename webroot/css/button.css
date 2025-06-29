@@ -1,0 +1,53 @@
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 2rem;
+  width: 95%;
+}
+
+.menu-btn {
+  display: block;
+  max-width: 500px;     /* was 400px before */
+  background: linear-gradient(135deg, rgba(229,57,53,0.8) 0%, rgba(183,28,28,0.8) 100%);
+  color: #fff;
+  padding: 1.4rem 2rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-family: "pixel", monospace;
+  font-size: 1.3rem;
+  border: 2px solid rgba(229,57,53,0.8);
+  box-shadow: 0 0 15px rgba(229,57,53,0.8);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  display: block;
+  margin: 1rem auto;
+  width: 95%;
+  text-align: center;
+}
+
+.menu-btn:hover {
+  background: linear-gradient(135deg, rgba(255,23,68,0.9) 0%, rgba(198,40,40,0.9) 100%);
+  box-shadow: 0 0 25px rgba(255,23,68,0.9);
+  transform: scale(1.05);
+}
+
+.menu-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 30px #ff1744;
+}
+
+#vsync-btn {
+  display: block;
+  margin: 1rem auto;
+}
+
+#vsync-btn.active {
+  border: 2px solid #00ffff;
+  transform: scale(1.05);
+  transition: transform 0.2s;
+}
+
+

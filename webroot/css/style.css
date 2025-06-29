@@ -1,0 +1,84 @@
+@font-face {
+  font-family: "penguin";
+  src: url("../fonts/penguin.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "pixel";
+  src: url("../fonts/pixel.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #0a0f1c;
+  color: #00ffea;
+  font-family: "pixel", monospace;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: "penguin", monospace;
+  color: #00ffff;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px #00ffff;
+}
+
+.subtitle {
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.center-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.output-panel {
+  background-color: #000;
+  color: #0f0;
+  font-family: monospace;
+  padding: 1rem;
+  margin-top: 2rem;           /* add some spacing from slider */
+  border-radius: 8px;
+  height: 150px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  border: 1px solid #0ff;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+.panel {
+  background-color: rgba(0,0,0,0.4);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  border: 1px solid #0ff;
+  box-shadow: 0 0 10px #0ff;
+}
+
+.panel h2 {
+  color: #e53935;
+  margin-bottom: 0.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  color: #0ff;
+}

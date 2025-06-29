@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Display Tweaks</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/button.css" />
+  <link rel="stylesheet" href="../css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fa fa-desktop"></i> Display Tweaks</h1>
+
+    <!-- Profile Section -->
+    <section class="panel">
+      <h2><i class="fa fa-sliders-h"></i> Profile Selection</h2>
+      <label for="profile-slider">Choose a profile:</label>
+      <input type="range" id="profile-slider" min="1" max="3" step="1" value="1">
+      <p>Current Profile: <span id="profile-name">Default</span></p>
+    </section>
+
+    <!-- Saturation Section -->
+    <section class="panel">
+      <h2><i class="fa fa-adjust"></i> Saturation Control</h2>
+      <label for="saturation-slider">Saturation Level:</label>
+      <input type="range" id="saturation-slider" min="0.5" max="2.0" step="0.05" value="1.0">
+      <p>Current Saturation: <span id="saturation-value">1.0</span>x</p>
+    </section>
+
+    <!-- VSYNC Section -->
+    <section class="panel">
+      <h2><i class="fa fa-sync"></i> VSYNC Control</h2>
+      <button id="vsync-btn" class="menu-btn">
+        <i class="fa fa-sync"></i> Toggle VSYNC
+      </button>
+      <p>VSYNC Status: <span id="vsync-status">Unknown</span></p>
+    </section>
+
+    <!-- Refresh Rate Section -->
+    <section class="panel">
+      <h2><i class="fa fa-tachometer-alt"></i> Refresh Rate Control</h2>
+      <label for="min-refresh-slider">Minimum Refresh Rate:</label>
+      <input type="range" id="min-refresh-slider" min="1" max="4" step="1" value="3">
+      <p>Min Refresh: <span id="min-refresh-value">60</span> Hz</p>
+      <label for="max-refresh-slider">Maximum Refresh Rate:</label>
+      <input type="range" id="max-refresh-slider" min="1" max="4" step="1" value="4">
+      <p>Max Refresh: <span id="max-refresh-value">90</span> Hz</p>
+    </section>
+
+    <div class="output-panel" id="output">Ready.</div>
+  </div>
+   <script src="../scripts/main.js"></script>
+  <script src="../scripts/display.js"></script>
+</body>
+</html>
