@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoC Tweaks</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/button.css" />
+  <link rel="stylesheet" href="../css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fa fa-microchip"></i> SoC Tweaks</h1>
+
+    <!-- CPU Governor -->
+    <section class="panel">
+      <h2><i class="fa fa-tachometer-alt"></i> CPU Governor</h2>
+      <!-- placeholder for per-policy governors -->
+      <div id="governor-controls"></div>
+    </section>
+
+    <!-- CPU Frequency -->
+    <section class="panel">
+      <h2><i class="fa fa-bolt"></i> CPU Frequency</h2>
+      <!-- placeholder for per-policy frequencies -->
+      <div id="frequency-controls"></div>
+    </section>
+
+    <section class="panel">
+       <h2><i class="fa fa-bolt"></i> WALT Custom Params</h2>
+       <button id="walt-custom-btn" class="menu-btn">
+       <i class="fa fa-sliders-h"></i> Apply Custom WALT
+       </button>
+    </section>
+    
+    <!-- Terminal output -->
+    <div class="output-panel" id="output">Ready.</div>
+  </div>
+
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/soc.js"></script>
+</body>
+</html>
