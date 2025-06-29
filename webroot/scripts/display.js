@@ -18,6 +18,34 @@ document.addEventListener("DOMContentLoaded", () => {
         6: 144
     };
 
+    (async () => {
+    try {
+        const minRaw = await runShell("settings get system min_refresh_rate");
+        const maxRaw = await runShell("settings get system peak_refresh_rate");
+
+        // parse to numbers
+        const minHz = parseInt(minRaw.trim());
+        const maxHz = parseInt(maxRaw.trim());
+
+        // find the matching slider positions from refreshMap
+        const minPos = Object.keys(refreshMap).find(key => refreshMap[key] === minHz);
+        const maxPos = Object.keys(refreshMap).find(key => refreshMap[key] === maxHz);
+
+        if (minPos) {
+            minRefreshSlider.value = minPos;
+            document.getElementById("min-refresh-value").textContent = minHz;
+        }
+
+        if (maxPos) {
+            maxRefreshSlider.value = maxPos;
+            document.getElementById("max-refresh-value").textContent = maxHz;
+        }
+
+        document.getElementById("output").textContent = `Detected refresh: ${minHz}-${maxHz}Hz`;
+    } catch (e) {
+        document.getElementById("output").textContent = `Failed to load current refresh rates: ${e}`;
+    }
+})();
     profileSlider.addEventListener("input", async () => {
         let val = parseInt(profileSlider.value);
         let name = "Default";
