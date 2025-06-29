@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I/O Tweaks</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/button.css" />
+  <link rel="stylesheet" href="../css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fa fa-hdd"></i> I/O Tweaks</h1>
+
+    <!-- I/O Scheduler Controls -->
+    <section class="panel">
+      <h2><i class="fa fa-list-tree"></i> I/O Schedulers</h2>
+      <div id="io-scheduler-controls">
+        <!-- JS fills here -->
+      </div>
+    </section>
+
+    <!-- Read Ahead -->
+    <section class="panel">
+      <h2><i class="fa fa-stream"></i> Read Ahead</h2>
+      <div id="read-ahead-controls">
+        <!-- JS fills here -->
+      </div>
+    </section>
+
+    <!-- I/O Stats Toggle -->
+    <section class="panel">
+      <h2><i class="fa fa-chart-bar"></i> I/O Stats</h2>
+      <button id="iostats-btn" class="menu-btn">
+        <i class="fa fa-toggle-on"></i> Toggle I/O Stats
+      </button>
+      <p>I/O Stats Status: <span id="iostats-status">Unknown</span></p>
+    </section>
+
+    <!-- Swappiness -->
+    <section class="panel">
+      <h2><i class="fa fa-memory"></i> Swappiness</h2>
+      <label for="swappiness-slider">Swappiness:</label>
+      <input type="range" id="swappiness-slider" min="0" max="100" step="5" value="40"/>
+      <p>Current Swappiness: <span id="swappiness-value">40</span></p>
+    </section>
+
+    <!-- Quick Optimize -->
+    <section class="panel">
+      <h2><i class="fa fa-tools"></i> Quick Optimize</h2>
+      <button id="io-optimize-btn" class="menu-btn">
+        <i class="fa fa-rocket"></i> Apply Best Settings
+      </button>
+    </section>
+
+    <!-- Terminal Output -->
+    <div class="output-panel" id="output">Ready.</div>
+  </div>
+
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/io.js"></script>
+</body>
+</html>

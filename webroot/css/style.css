@@ -125,3 +125,77 @@ label {
   font-family: monospace;
   min-height: 2rem;
 }
+
+/* I/O Tweak Panel Styling */
+
+.io-block {
+  margin-bottom: 1rem;
+}
+
+.io-block label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  color: #0ff;
+}
+
+.io-block select {
+  width: 100%;
+  background-color: #111;
+  color: #0ff;
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  font-family: monospace;
+  font-size: 1rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+/* use same container styling from style.css */
+
+.panel h2 i {
+  margin-right: 0.4rem;
+  color: #0ff;
+}
+
+
+#swappiness-slider {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+#read-ahead-controls input[type="range"] {
+  width: 90%;
+  margin-top: 0.5rem;
+}
+
+.scheduler-block {
+  margin-bottom: 1rem;
+}
+
+.scheduler-block label {
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+  color: #0ff;
+  font-weight: bold;
+}
+
+.scheduler-block select {
+  width: 100%;
+  background: #111;
+  color: #0ff;
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  font-family: monospace;
+  font-size: 1rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+}
