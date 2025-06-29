@@ -41,16 +41,20 @@
     <section class="panel">
       <h2><i class="fa fa-tachometer-alt"></i> Refresh Rate Control</h2>
       <label for="min-refresh-slider">Minimum Refresh Rate:</label>
-      <input type="range" id="min-refresh-slider" min="1" max="4" step="1" value="3">
+      <input type="range" id="min-refresh-slider" min="1" max="6" step="1" value="3">
       <p>Min Refresh: <span id="min-refresh-value">60</span> Hz</p>
+
       <label for="max-refresh-slider">Maximum Refresh Rate:</label>
-      <input type="range" id="max-refresh-slider" min="1" max="4" step="1" value="4">
+      <input type="range" id="max-refresh-slider" min="1" max="6" step="1" value="4">
       <p>Max Refresh: <span id="max-refresh-value">90</span> Hz</p>
+
+      <button id="refresh-apply" class="menu-btn">Apply Refresh</button>
     </section>
 
     <div class="output-panel" id="output">Ready.</div>
   </div>
-   <script src="../scripts/main.js"></script>
+  
+  <script src="../scripts/main.js"></script>
   <script src="../scripts/display.js"></script>
 </body>
 </html>
