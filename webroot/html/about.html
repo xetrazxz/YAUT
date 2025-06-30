@@ -1,91 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <title>About</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/all.min.css" />
-    <style>
-        @keyframes pulse-border {
-          0%   { box-shadow: 0 0 20px #0ff; border-color: #0ff; }
-          50%  { box-shadow: 0 0 40px #03a9f4; border-color: #03a9f4; }
-          100% { box-shadow: 0 0 20px #0ff; border-color: #0ff; }
-        }
-        
-        body {
-          background: #0a0a0a;
-          color: #0ff;
-          font-family: 'Courier New', monospace;
-          margin: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-        }
-        
-        .about-box {
-          border: 2px solid #0ff;
-          border-radius: 16px;
-          padding: 2rem;
-          width: 75%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          max-width: 600px;
-          height: 85%;
-          text-align: center;
-          background: rgba(10,10,10,0.95);
-          animation: pulse-border 2s infinite;
-        }
-        
-        .about-box h1 {
-          color: #0ff;
-          margin-bottom: 1rem;
-          font-size: 2rem;
-        }
-        
-        .about-box h2 {
-          margin-top: 1.5rem;
-          color: #03a9f4;
-          font-size: 1.3rem;
-        }
-        
-        .about-box a {
-          display: inline-block;
-          color: #0ff;
-          margin-top: 0.5rem;
-          text-decoration: none;
-          background: rgba(0,255,255,0.1);
-          padding: 0.5rem 1rem;
-          border-radius: 8px;
-          transition: background 0.3s, transform 0.2s;
-        }
-        
-        .about-box a:hover {
-          background: rgba(0,255,255,0.2);
-          transform: scale(1.05);
-        }
-        
-        .icon {
-          margin-right: 0.5rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>About</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/all.min.css" />
+  <link rel="stylesheet" href="../css/brands.min.css" />
+  <style>
+    @keyframes pulse-border {
+      0%   { box-shadow: 0 0 20px #0ff; border-color: #0ff; }
+      50%  { box-shadow: 0 0 40px #03a9f4; border-color: #03a9f4; }
+      100% { box-shadow: 0 0 20px #0ff; border-color: #0ff; }
+    }
+    body {
+      background: #0a0a0a;
+      color: #0ff;
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .about-box {
+      border: 2px solid #0ff;
+      border-radius: 16px;
+      padding: 2rem;
+      width: 75%;
+      max-width: 600px;
+      background: rgba(10,10,10,0.95);
+      animation: pulse-border 2s infinite;
+      text-align: center;
+    }
+    .about-box h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .about-box h2 {
+      margin-top: 1.5rem;
+      font-size: 1.3rem;
+      color: #03a9f4;
+    }
+    .about-box a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #0ff;
+      text-decoration: none;
+      background: rgba(0,255,255,0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .about-box a:hover {
+      background: rgba(0,255,255,0.2);
+      transform: scale(1.05);
+    }
+    .icon {
+      margin-right: 0.5rem;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="about-box">
-        <h1><i class="fas fa-user"></i></h1>
-        <h1>About</h1>
-        <h2>Made by <a href="https://t.me/xetrazxz" target="_blank">@xetrazxz</a></h2>
+  <div class="about-box">
+    <h1><i class="fas fa-user"></i> About</h1>
+    <h2>
+      <a href="https://t.me/xetrazxz" target="_blank">
+        <i class="fa-brands fa-telegram icon"></i> Telegram
+      </a>
+    </h2>
+    <h2>
+      <a href="https://github.com/xetrazxz" target="_blank">
+        <i class="fa-brands fa-github icon"></i> Visit my GitHub
+      </a>
+    </h2>
 
-        <h2><i class="fas fa-comments icon"></i> Chat / Support</h2>
-        <a href="https://t.me/+0PTJfdtqrHllN2Rl" target="_blank">Join Telegram Chat</a>
+    <h2>
+      <a href="https://t.me/xetrazxz_box" target="_blank">
+        <i class="fa-brands fa-telegram icon"></i> Join Channel
+      </a>
+    </h2>
 
-        <h2><i class="fas fa-cloud icon"></i> Cloud & Device Requests</h2>
-        <a href="https://t.me/+0PTJfdtqrHllN2Rl" target="_blank">Cloud + Chat</a>
-    </div>
+    <h2>
+      <a href="https://t.me/+0PTJfdtqrHllN2Rl" target="_blank">
+        <i class="fas fa-cloud icon"></i> Cloud + Chat
+      </a>
+    </h2>
+  </div>
 </body>
-
 </html>
