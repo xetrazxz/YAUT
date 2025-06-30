@@ -7,14 +7,26 @@ document.addEventListener("DOMContentLoaded", async () => {
   const iostatsBtn = document.getElementById("iostats-btn");
   const iostatsStatus = document.getElementById("iostats-status");
   const optimizeBtn = document.getElementById("io-optimize-btn");
+  const bootsetBtn = document.getElementById("boot-apply-btn");
+  const bootRMBtn = document.getElementById("boot-disable-btn");
+  const scriptContent = `echo 0 > /sys/block/mmcblk0/queue/iostats 2>/dev/null;
+for dev in /sys/block/sd[a-f]; do
+    if [ -e "$dev/queue/scheduler" ]; then
+        echo none > "$dev/queue/scheduler"
+    fi
+    if [ -e "$dev/queue/iostats" ]; then
+        echo 0 > "$dev/queue/iostats"
+    fi
+done
+sysctl -w vm.swappiness=35`;
 
   try {
-    // get current swappiness
+    // swappiness
     const swappiness = await runShell(`cat /proc/sys/vm/swappiness`);
     swappinessSlider.value = swappiness.trim();
     swappinessValue.textContent = swappiness.trim();
 
-    // list block devices matching mmcblkN and sdX
+    // block devices
     const blockDevsRaw = await runShell(`ls /sys/block | grep -E 'mmcblk[0-9]+|sd[a-z]'`);
     const blockDevs = blockDevsRaw.trim().split("\n");
 
@@ -23,9 +35,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       const readAheadPath = `/sys/block/${dev}/queue/read_ahead_kb`;
       const iostatsPath = `/sys/block/${dev}/queue/iostats`;
 
-      // SCHEDULER
+      // scheduler
       const schedRaw = await runShell(`cat ${schedPath}`);
-      const scheds = schedRaw.replace(/\[|\]/g,"").split(" ");
+      const scheds = schedRaw.replace(/\[|\]/g, "").split(" ");
       const activeSched = scheds.find(s => schedRaw.includes(`[${s}]`)) || "unknown";
 
       const schedDiv = document.createElement("div");
@@ -47,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       });
 
-      // READ AHEAD
+      // read ahead
       const curReadAhead = await runShell(`cat ${readAheadPath}`);
       const readDiv = document.createElement("div");
       readDiv.className = "io-block";
@@ -69,12 +81,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       });
 
-      // IOSTATS
+      // iostats
       const iostatsValue = await runShell(`cat ${iostatsPath}`);
       iostatsStatus.textContent = iostatsValue.trim() === "1" ? "Enabled" : "Disabled";
     }
 
-    // iostats toggle button
+    // toggle iostats
     iostatsBtn.addEventListener("click", async () => {
       try {
         const newVal = iostatsStatus.textContent === "Enabled" ? 0 : 1;
@@ -100,23 +112,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    // best settings button
+    // best settings
     optimizeBtn.addEventListener("click", async () => {
       try {
         await runShell(`
-          echo 0 > /sys/block/mmcblk1/queue/iostats 2>/dev/null;
-        for dev in /sys/block/sd[a-f]; do
-          if [ -e "$dev/queue/scheduler" ]; then
-            echo none > "$dev/queue/scheduler"
-          fi
-          if [ -e "$dev/queue/iostats" ]; then
-            echo 0 > "$dev/queue/iostats"
-          fi
-        done;
-        sysctl -w vm.swappiness=${swappinessSlider.value}
-      `);
+          echo 0 > /sys/block/mmcblk0/queue/iostats 2>/dev/null;
+          for dev in /sys/block/sd[a-f]; do
+            if [ -e "$dev/queue/scheduler" ]; then
+              echo none > "$dev/queue/scheduler"
+            fi
+            if [ -e "$dev/queue/iostats" ]; then
+              echo 0 > "$dev/queue/iostats"
+            fi
+          done;
+          sysctl -w vm.swappiness=35
+        `);
 
-        // refresh displayed swappiness
         const newSwappiness = await runShell(`sysctl -n vm.swappiness`);
         swappinessSlider.value = newSwappiness.trim();
         swappinessValue.textContent = newSwappiness.trim();
@@ -129,9 +140,28 @@ document.addEventListener("DOMContentLoaded", async () => {
           document.getElementById(`sched-${dev}`).value = activeSched;
         }
 
-        output.textContent = `Best settings applied and synchronized.`;
+        output.textContent = "Best settings applied.";
       } catch (err) {
         output.textContent = `Failed to apply best settings: ${err}`;
+      }
+    });
+
+    // boot apply button
+    bootsetBtn.addEventListener("click", async () => {
+      try {
+    await runShell(`echo "${scriptContent.replace(/"/g, '\\"')}" > /data/local/YAUT/io-tweaks-boot.sh && chmod 755 /data/local/YAUT/io-tweaks-boot.sh`);
+    output.textContent = "Boot tweak script created ";
+  } catch (err) {
+    output.textContent = `Failed to write boot tweak script: ${err}`;
+  }
+});
+    
+    bootRMBtn.addEventListener("click", async () => {
+      try {
+        await runShell(`echo "" > /data/local/YAUT/io-tweaks-boot.sh`);
+        output.textContent = "Tweaks wont be applied at boot.";
+      } catch (err) {
+        output.textContent = `Failed to Remove: ${err}`;
       }
     });
 
