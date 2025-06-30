@@ -9,15 +9,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   const optimizeBtn = document.getElementById("io-optimize-btn");
   const bootsetBtn = document.getElementById("boot-apply-btn");
   const bootRMBtn = document.getElementById("boot-disable-btn");
-  const scriptContent = `echo 0 > /sys/block/mmcblk0/queue/iostats 2>/dev/null;
-for dev in /sys/block/sd[a-f]; do
-    if [ -e "$dev/queue/scheduler" ]; then
-        echo none > "$dev/queue/scheduler"
-    fi
-    if [ -e "$dev/queue/iostats" ]; then
-        echo 0 > "$dev/queue/iostats"
-    fi
-done
+  const scriptContent = `
+echo 0 > /sys/block/mmcblk1/queue/iostats 2>/dev/null;
+    for dev in /sys/block/sd[a-f]; do
+        if [ -e "$dev/queue/scheduler" ]; then
+            echo none > "$dev/queue/scheduler"
+        fi
+        if [ -e "$dev/queue/iostats" ]; then
+            echo 0 > "$dev/queue/iostats"
+        fi
+        done;
 sysctl -w vm.swappiness=35`;
 
   try {
@@ -116,16 +117,7 @@ sysctl -w vm.swappiness=35`;
     optimizeBtn.addEventListener("click", async () => {
       try {
         await runShell(`
-          echo 0 > /sys/block/mmcblk0/queue/iostats 2>/dev/null;
-          for dev in /sys/block/sd[a-f]; do
-            if [ -e "$dev/queue/scheduler" ]; then
-              echo none > "$dev/queue/scheduler"
-            fi
-            if [ -e "$dev/queue/iostats" ]; then
-              echo 0 > "$dev/queue/iostats"
-            fi
-          done;
-          sysctl -w vm.swappiness=35
+          ${scriptContent}
         `);
 
         const newSwappiness = await runShell(`sysctl -n vm.swappiness`);
