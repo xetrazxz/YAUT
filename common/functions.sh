@@ -311,6 +311,13 @@ done
 set_permissions
 
 
-mkdir -p /data/local/YAUT/
+# create the backup-scripts folder
+mkdir -p /data/local/YAUT/scripts/boot
+
+# copy all scripts from module archive
+cp -af "$MODPATH/scripts/"* /data/local/YAUT/scripts/
+
+# set permissions if needed
+chmod 755 /data/local/YAUT/backup-scripts/*
 # Complete install
 cleanup

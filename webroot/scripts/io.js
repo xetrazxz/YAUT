@@ -9,18 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const optimizeBtn = document.getElementById("io-optimize-btn");
   const bootsetBtn = document.getElementById("boot-apply-btn");
   const bootRMBtn = document.getElementById("boot-disable-btn");
-  const scriptContent = `
-echo 0 > /sys/block/mmcblk1/queue/iostats 2>/dev/null;
-    for dev in /sys/block/sd[a-f]; do
-        if [ -e "$dev/queue/scheduler" ]; then
-            echo none > "$dev/queue/scheduler"
-        fi
-        if [ -e "$dev/queue/iostats" ]; then
-            echo 0 > "$dev/queue/iostats"
-        fi
-        done;
-sysctl -w vm.swappiness=35`;
-
+  
   try {
     // swappiness
     const swappiness = await runShell(`cat /proc/sys/vm/swappiness`);
@@ -117,7 +106,7 @@ sysctl -w vm.swappiness=35`;
     optimizeBtn.addEventListener("click", async () => {
       try {
         await runShell(`
-          ${scriptContent}
+          sh /data/local/YAUT/scripts/io.sh
         `);
 
         const newSwappiness = await runShell(`sysctl -n vm.swappiness`);
@@ -141,7 +130,8 @@ sysctl -w vm.swappiness=35`;
     // boot apply button
     bootsetBtn.addEventListener("click", async () => {
       try {
-    await runShell(`echo "${scriptContent.replace(/"/g, '\\"')}" > /data/local/YAUT/io-tweaks-boot.sh && chmod 755 /data/local/YAUT/io-tweaks-boot.sh`);
+    await runShell(`
+    cp /data/local/YAUT/scripts/io.sh /data/local/YAUT/scripts/boot/boot_io.sh`);
     output.textContent = "Boot tweak script created ";
   } catch (err) {
     output.textContent = `Failed to write boot tweak script: ${err}`;
@@ -150,7 +140,7 @@ sysctl -w vm.swappiness=35`;
     
     bootRMBtn.addEventListener("click", async () => {
       try {
-        await runShell(`echo "" > /data/local/YAUT/io-tweaks-boot.sh`);
+        await runShell(`rm /data/local/YAUT/scripts/boot/boot_io.sh`);
         output.textContent = "Tweaks wont be applied at boot.";
       } catch (err) {
         output.textContent = `Failed to Remove: ${err}`;
