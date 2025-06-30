@@ -104,19 +104,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     optimizeBtn.addEventListener("click", async () => {
       try {
         await runShell(`
-          if [ -e "/sys/block/mmcblk0/queue/iostats" ]; then
-            echo "0" > /sys/block/mmcblk0/queue/iostats
+          echo 0 > /sys/block/mmcblk1/queue/iostats 2>/dev/null;
+        for dev in /sys/block/sd[a-f]; do
+          if [ -e "$dev/queue/scheduler" ]; then
+            echo none > "$dev/queue/scheduler"
           fi
-          for dev in /sys/block/sd[a-f]; do
-            if [ -e "/sys/block/$dev/queue/scheduler" ]; then
-              echo "none" > "/sys/block/$dev/queue/scheduler"
-            fi
-            if [ -e "/sys/block/$dev/queue/iostats" ]; then
-              echo "0" > "/sys/block/$dev/queue/iostats"
-            fi
-          done
-          sysctl -w vm.swappiness=40
-        `);
+          if [ -e "$dev/queue/iostats" ]; then
+            echo 0 > "$dev/queue/iostats"
+          fi
+        done;
+        sysctl -w vm.swappiness=${swappinessSlider.value}
+      `);
 
         // refresh displayed swappiness
         const newSwappiness = await runShell(`sysctl -n vm.swappiness`);
