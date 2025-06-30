@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const val_uA = Math.round(val_A * 1000000);
     chargeLimitValue.textContent = `${val_A} A`;
     try {
-      await runShell(`echo ${val_uA} > /sys/class/qcom-battery/restrict_cur`);
+      await runShell(`echo ${val_uA} > /sys/class/qcom-battery/restrict_cur && echo 1 > /sys/class/qcom-battery/restrict_chg `);
       outputPanel.textContent = `Charge current limited to ${val_A} A (${val_uA} uA)`;
       scrollLog();
     } catch (e) {

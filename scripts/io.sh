@@ -6,5 +6,5 @@ for dev in /sys/block/sd[a-f]; do
     if [ -e "$dev/queue/iostats" ]; then
         echo 0 > "$dev/queue/iostats"
     fi
-done;
+done
 sysctl -w vm.swappiness=35

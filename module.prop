@@ -3,5 +3,5 @@ name=YAUT ( Yet Another Useless Tweaker )
 version=v1.0
 versionCode=1
 author=xetrazxz
-description=Magisk Module Template Extended
+description=Completely Useless
 updateJson=https://raw.githubusercontent.com/xetrazxz/YAUT/master/update.json
